@@ -23,6 +23,7 @@ def pull(
     stream=False,
     quiet=False,
     singularity_options=None,
+    pull_options=None,
 ):
 
     """pull will pull a singularity hub or Docker image
@@ -33,6 +34,7 @@ def pull(
     singularity_options: a list of options to provide to the singularity client
     pull_folder: if not defined, pulls to $PWD (''). If defined, pulls to
                  user specified location instead.
+    pull_options: a list of options to provide to the singularity pull verb
 
     Docker and Singularity Hub Naming
     ---------------------------------
@@ -79,6 +81,9 @@ def pull(
 
     if force:
         cmd = cmd + ["--force"]
+
+    if pull_options:
+        cmd = cmd + pull_options
 
     cmd.append(image)
 
